@@ -6,9 +6,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.List;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
@@ -46,6 +47,16 @@ public class LionTest {
         System.out.println(testerLion.getKittens());
         when(mockLion.getFood(animalType)).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         System.out.println(testerLion.getFood());
+        if (sxt == "Самец") {
+            assertTrue(testerLion.doesHaveMane());
+            assertEquals(1, testerLion.getKittens());
+            assertEquals(List.of("Животные", "Птицы", "Рыба"), testerLion.getFood());
+        } else {
+            assertFalse(testerLion.doesHaveMane());
+            assertEquals(1, testerLion.getKittens());
+            assertEquals(List.of("Животные", "Птицы", "Рыба"), testerLion.getFood());
+        }
+
 
     }
 
