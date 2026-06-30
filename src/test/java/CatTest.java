@@ -1,0 +1,30 @@
+import org.junit.Test;
+import com.example.Feline;
+import com.example.Cat;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import java.util.List;
+import org.testng.asserts.SoftAssert;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
+public class CatTest {
+    @Mock
+    private Feline mockPredator;
+
+    @Test
+    public void testCatFeline() throws Exception {
+        when(mockPredator.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+
+        Cat catTester = new Cat((Feline) mockPredator);
+
+        System.out.println(catTester.getSound());
+        System.out.println(catTester.getFood());
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals("Мяу", catTester.getSound());
+        softAssert.assertEquals(List.of("Животные", "Птицы", "Рыба"), catTester.getFood());
+
+    }
+}
