@@ -5,8 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import org.testng.asserts.SoftAssert;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,8 +20,11 @@ public class CatTest {
         Cat catTester = new Cat((Feline) mockPredator);
 
         System.out.println(catTester.getSound());
-        assertEquals("Мяу", catTester.getSound());
         System.out.println(catTester.getFood());
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), catTester.getFood());
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals("Мяу", catTester.getSound());
+        softAssert.assertEquals(List.of("Животные", "Птицы", "Рыба"), catTester.getFood());
+
     }
 }
